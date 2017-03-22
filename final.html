@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Handlebars.js Tutorial: IMDB Mock</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+</head>
+
+<body>
+
+    <div id="movie-list">
+        <!-- HTML version
+       <div class="movie">
+            <img src="img/1.jpg" alt=""> 1. The Shawshank Redemption (1994) <img src="img/star.png " alt="">9.2
+            <button>Like</button>
+        </div> -->
+    </div>
+
+    <script id="movie" type="text/x-handlebars-template">
+
+        {{#each movies}}
+        <div class="movie">
+            <img src="img/{{movie-poster}}" alt="">1 . {{title}} ({{year}}) <img src="img/star.png " alt="">{{rating}}
+            <button>Love</button>
+        </div>
+        {{/each}}
+
+    </script>
+
+    <script>
+    // Retrieve the template data from the HTML (jQuery is used here).
+    var template = $('#movie').html();
+    // Compile the template data into a function
+    var templateScript = Handlebars.compile(template);
+    var data = {
+        "movies": [{
+            "movie-poster": "1.jpg",
+            "title": "The Shawshank Redemption",
+            "year": "1994",
+            "rating": "9.2"
+        }, {
+            "movie-poster": "2.jpg",
+            "title": "The Godfather",
+            "year": "1972",
+            "rating": "9.2"
+        }]
+    };
+    var html = templateScript(data);
+    // Insert the HTML code into the page
+    $('#movie-list').append(html);
+
+    </script>
+
+</body>
+
+</html>
+
